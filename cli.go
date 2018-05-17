@@ -7,7 +7,7 @@ import (
 	"log"
 	"os"
 
-	pb "bitbucket.org/dillonlpeterson/shippy/consignment-service/proto/consignment"
+	pb "github.com/dillonlpeterson/shippy-consignment-service/proto/consignment"
 	"golang.org/x/net/context"
 
 	microclient "github.com/micro/go-micro/client"
