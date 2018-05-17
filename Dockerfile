@@ -37,6 +37,6 @@ WORKDIR /app
 COPY --from=builder /go/src/github.com/dillonlpeterson/shippy-consignment-cli/shippy-consignment-cli .
 COPY --from=builder /go/src/github.com/dillonlpeterson/shippy-consignment-cli/consignment.json .
 # As usual, run the binary!
-CMD ["./consignment-cli"]
+CMD ["./shippy-consignment-cli"]
 
 # Code must be pushed up to Git so that it can pull in other services.
