@@ -1,5 +1,6 @@
 package main
 
+// Comment
 import (
 	"encoding/json"
 	"io/ioutil"
