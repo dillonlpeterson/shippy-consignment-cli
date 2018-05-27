@@ -32,5 +32,6 @@ COPY consignment.json /app/consignment.json
 COPY --from=builder /go/src/github.com/dillonlpeterson/shippy-consignment-cli .
 # As usual, run the binary!
 ENTRYPOINT ["./shippy-consignment-cli"]
+CMD ["./shippy-consignment-cli"]
 
 # Code must be pushed up to Git so that it can pull in other services.

@@ -4,5 +4,4 @@ build:
 run: 
 	docker run --net="host" \
 		-e MICRO_REGISTRY=mdns \
-		consignment-cli consignment.json \
-		<TOKEN_HERE>
+		consignment-cli 

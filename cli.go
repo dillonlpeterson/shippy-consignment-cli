@@ -38,6 +38,7 @@ func main() {
 	// Create new greeter client
 	client := pb.NewShippingServiceClient("go.micro.srv.consignment", microclient.DefaultClient)
 
+	// Contact the server and print out its response
 	var token string
 	file := defaultFilename
 	log.Println(os.Args)
@@ -63,7 +64,7 @@ func main() {
 	// First call using our tokenized context
 	r, err := client.CreateConsignment(ctx, consignment)
 	if err != nil {
-		log.Fatalf("Could not greet: %v", err)
+		log.Fatalf("Could not created: %v", err)
 	}
 	log.Printf("Created: %t", r.Created)
 
