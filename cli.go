@@ -2,12 +2,13 @@ package main
 
 // Comment
 import (
-	"context"
 	"encoding/json"
 	"errors"
 	"io/ioutil"
 	"log"
 	"os"
+
+	"golang.org/x/net/context"
 
 	pb "github.com/dillonlpeterson/shippy-consignment-service/proto/consignment"
 
@@ -17,7 +18,7 @@ import (
 )
 
 const (
-	address         = "localhost: 50051"
+	address         = "localhost:50051"
 	defaultFilename = "consignment.json"
 )
 
@@ -64,7 +65,7 @@ func main() {
 	// First call using our tokenized context
 	r, err := client.CreateConsignment(ctx, consignment)
 	if err != nil {
-		log.Fatalf("Could not created: %v", err)
+		log.Fatalf("Could not create: %v", err)
 	}
 	log.Printf("Created: %t", r.Created)
 
