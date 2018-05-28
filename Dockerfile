@@ -13,7 +13,7 @@ RUN go get
 
 # Build the binary, with a few flags that will allow us 
 # to run the binary in Alpine. 
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo .
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo 
 
 # Here we're using a second FROM statement, which tells Docker to start 
 # a new build process with this image
@@ -32,6 +32,5 @@ COPY consignment.json /app/consignment.json
 COPY --from=builder /go/src/github.com/dillonlpeterson/shippy-consignment-cli .
 # As usual, run the binary!
 ENTRYPOINT ["./shippy-consignment-cli"]
-CMD ["./shippy-consignment-cli"]
 
 # Code must be pushed up to Git so that it can pull in other services.
