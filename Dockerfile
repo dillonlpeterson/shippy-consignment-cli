@@ -6,20 +6,20 @@ FROM golang:1.9.0 as builder
 WORKDIR /go/src/bitbucket.org/dillonlpeterson/myplans-event-service-cli
 
 # SSH Key Argument. Provides SSH key for access to Bitbucket Private Repositories 
-ARG SSH_KEY 
-ARG GIT_CONFIG_FILE
+#ARG SSH_KEY 
+#ARG GIT_CONFIG_FILE
 # Force git to use SSH 
 RUN echo "[url \"git@bitbucket.org:\"]\n\tinsteadOf = https://bitbucket.org/" >> /root/.gitconfig
-RUN mkdir /root/.ssh && echo "StrictHostKeyChecking no " > /root/.ssh/config
-RUN echo "${SSH_KEY}" > /root/.ssh/id_rsa
+#RUN mkdir /root/.ssh && echo "StrictHostKeyChecking no " > /root/.ssh/config
+#RUN echo "${SSH_KEY}" > /root/.ssh/id_rsa
 #RUN echo "GIT_CONFIG_FILE" > /root/.ssh/config
-RUN chmod 0600 /root/.ssh/id_rsa
+#RUN chmod 0600 /root/.ssh/id_rsa
 #RUN ssh-keyscan bitbucket.org >> /root/.ssh/known_hosts 
 
 
 
 
-
+COPY ./.ssh /root/.ssh
 # Copy the current directory into our workdir 
 COPY . .
 RUN go get -v -d
