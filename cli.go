@@ -35,6 +35,10 @@ func main() {
 	// Create new greeter client
 	client := pb.NewEventServiceClient("myplans.event", microclient.DefaultClient)
 
+	if len(os.Args) < 1 {
+		log.Fatal("Not enough argument to OS")
+	}
+
 	file := os.Args[1]
 
 	event, err := parseFile(file)
