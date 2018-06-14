@@ -51,6 +51,5 @@ func main() {
 	if err != nil {
 		log.Fatal("Could not create event: %v", err)
 	}
-	log.Println("Created: %v", r.Created)
-
+	log.Println("Createdd: %v", r.Created)
 }

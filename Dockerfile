@@ -2,18 +2,30 @@
 # correct build tools and libraries. Notice 'as builder',
 # this gives the container a name that we can reference later on.
 FROM golang:1.9.0 as builder 
-
 # Set our workdir to our current service in the gopath
 WORKDIR /go/src/bitbucket.org/dillonlpeterson/myplans-event-service-cli
 
+# SSH Key Argument. Provides SSH key for access to Bitbucket Private Repositories 
+#ARG SSH_KEY 
+#ARG GIT_CONFIG_FILE
+# Force git to use SSH 
+RUN echo "[url \"git@bitbucket.org:\"]\n\tinsteadOf = https://bitbucket.org/" >> /root/.gitconfig
+#RUN mkdir /root/.ssh && echo "StrictHostKeyChecking no " > /root/.ssh/config
+#RUN echo "${SSH_KEY}" > /root/.ssh/id_rsa
+#RUN echo "GIT_CONFIG_FILE" > /root/.ssh/config
+#RUN chmod 0600 /root/.ssh/id_rsa
+#RUN ssh-keyscan bitbucket.org >> /root/.ssh/known_hosts 
+
+
+
+
+COPY ./.ssh /root/.ssh
 # Copy the current directory into our workdir 
 COPY . .
-
-RUN go get 
-
+RUN go get -v -d
 # Build the binary, with a few flags that will allow us 
 # to run the binary in Alpine. 
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo 
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo .
 
 # Here we're using a second FROM statement, which tells Docker to start 
 # a new build process with this image
