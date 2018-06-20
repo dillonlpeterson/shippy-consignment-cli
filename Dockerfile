@@ -14,7 +14,7 @@ ARG SSH_KEY
 COPY . .
 RUN go get -u github.com/golang/dep/cmd/dep
 #RUN eval "$(ssh-agent -s)" && ssh-add /root/.ssh/id_rsa && dep init && dep ensure 
-RUN dep init && dep ensure 
+RUN dep init -v && dep ensure 
 # Build the binary, with a few flags that will allow us 
 # to run the binary in Alpine. 
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo .
